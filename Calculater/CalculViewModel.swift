@@ -9,7 +9,7 @@ import Foundation
 //==================================================================
 //	<MVVM 디자인 패턴의 ViewModel>
 //	View의 이벤트에 따른 Model 데이터의 변화를 구성한다.
-//	포함요소 : {Property Wrapper 변수, 후위식 변환함수, 후위식, 결과값}
+//	포함요소 : {Property Wrapper 변수, 최종함수, 후위식 변환함수, 후위식 해석함수}
 //==================================================================
 class CalculViewModel : ObservableObject {
 	//--------------------------------------------------------------
@@ -17,11 +17,30 @@ class CalculViewModel : ObservableObject {
 		@Published var calcul = CalculModel(stack: [], mathExpression: [], postfixNotation: [],result: 0)
 	//--------------------------------------------------------------
 	
-	// MARK: 입력식을 후위식으로 바꾸는 함수
+	// MARK: 뷰에서 실행시킬 최종함수
 	//--------------------------------------------------------------
-	//	입력식을 함수로 변환하는 함수
+	//	뷰에서 실행시킬 최종함수
 	//--------------------------------------------------------------
 	func CalculFunc()->Double{
+		
+		changepostfixNotation()
+		
+		//	스택이 빈 배열이 아니면 오류이다.
+		if calcul.stack.isEmpty == false{
+			self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
+		}
+		else {
+			postfixNotationCalcul()
+		}
+		
+		return	calcul.result
+	}
+	
+	// MARK: 입력식을 후위식으로 바꾸는 함수
+	//--------------------------------------------------------------
+	//	입력식을 후위식으로 변환하는 함수
+	//--------------------------------------------------------------
+	func changepostfixNotation() {
 		
 		//	연산을 여러번 시도했을 때 후위식이 비어있지 않으면 겹쳐지기때문에 초기화한다.
 		self.calcul.postfixNotation = []
@@ -130,6 +149,8 @@ class CalculViewModel : ObservableObject {
 //										calcul.stack.append("+")
 //									}
 								}
+							
+							//	+의 주석과 순서가 같다.
 							case "-":
 								if calcul.stack.count == 0 {
 									calcul.stack.append("-")
@@ -143,6 +164,8 @@ class CalculViewModel : ObservableObject {
 										}
 									}
 								}
+								
+							//	+의 주석과 순서가 같다.
 							case "*":
 								if calcul.stack.count == 0 {
 									calcul.stack.append("*")
@@ -156,6 +179,8 @@ class CalculViewModel : ObservableObject {
 										}
 									}
 								}
+								
+							//	+의 주석과 순서가 같다.
 							case "/":
 								if calcul.stack.count == 0 {
 									calcul.stack.append("/")
@@ -172,39 +197,63 @@ class CalculViewModel : ObservableObject {
 							//===============================<사칙연산 마지막 부분>=================================
 								
 							//=================================================================================
-							//	(,) 연산
+							//	(,) 연산 처리 부분
 							//=================================================================================
 							case "(":
 								
-								//	
+								//	괄호 앞에 숫자가 왔을 시에 *연산을 해야하기 때문에 i 바로 전 값의 존재를 확인
 								if i-1 < calcul.mathExpression.count-1 && i-1 > 0 {
+									
+									//	괄호 전 값이 숫자라면 *연산을 집어넣어야한다.
 									if NumberFormatter().number(from:calcul.mathExpression[i-1]) != nil {
 										calcul.stack.append("*")
 									}
+									
 								}
+								
+								//	괄호 앞에 숫자가 없다면 바로 여는 괄호를 스택에 집어넣는다.
 								calcul.stack.append("(")
+								
 							case ")":
+								//--------------------------------------------------------------
+								//	)를 읽었다면 아래와 같은 로직이 필요하다.
+								//	(를 만날 때까지 숫자는 후위식에 연산자는 스택에 집어넣는다.
+								//	(를 만나면 스택에 있는 연산자를 poplast()해서 후위식에 넣는다.
+								//--------------------------------------------------------------
+								
+								//	스택에 여는 괄호가 포함되있어야 올바른 식이다.
 								if calcul.stack.contains("("){
+									
+									//	(가 나올 때 까지 스택의 마지막요소를 poplast()한다.
 									while calcul.stack[calcul.stack.count-1] != "(" {
 										self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
 									}
+									
+									//	여는 괄호를 만났다면 그 괄호는 스택에서 그냥 지워준다.
 									if calcul.stack[calcul.stack.count-1] == "("{
 										calcul.stack.remove(at: calcul.stack.count-1)
 									}
 								}
+								
+								//	스택에 ( 가 없으면 잘못된 구문이므로 오류처리한다.
 								else {
 									self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 									break
 								}
+							//================================<괄호처리 끝>======================================
 							default:
-								print("")
+								self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 							}
 						}
 					}
 				}
-				//	마지막이라면? 숫자거나 )이거겠지
-				else {
-					//	마지막인데 숫자야
+				//	마지막에는 숫자나 닫는 괄호만 오는게 정상적인 식이기 때문에 구문을 나눠준다.
+				else if calcul.mathExpression[calcul.mathExpression.count - 1] == ")" || NumberFormatter().number(from:calcul.mathExpression[calcul.mathExpression.count - 1]) != nil{
+					
+					//--------------------------------------------------------------
+					//	입력식의 마지막이 연속적숫자 나 단일 숫자를 생각해 임시스트링에 숫자를 넣어준다.
+					//	후위식에 임시스트링을 넣어주고 스택의 모든 요소를 후위식에 넣어준다.
+					//--------------------------------------------------------------
 					if NumberFormatter().number(from:calcul.mathExpression[i]) != nil {
 						tempString += calcul.mathExpression[i]
 						self.calcul.postfixNotation.append(tempString)
@@ -212,6 +261,13 @@ class CalculViewModel : ObservableObject {
 							self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
 						}
 					}
+					
+					//--------------------------------------------------------------
+					//	)를 읽었다면 아래와 같은 로직이 필요하다.
+					//	(를 만날 때까지 숫자는 후위식에 연산자는 스택에 집어넣는다.
+					//	(를 만나면 스택에 있는 연산자를 poplast()해서 후위식에 넣는다.
+					//	마지막이 ) 이기때문에 스택에 있는 모든 요소를 후위식에 넣어준다.
+					//--------------------------------------------------------------
 					else if calcul.mathExpression[i] == ")" {
 						if calcul.stack.contains("("){
 							while calcul.stack[calcul.stack.count-1] != "(" {
@@ -224,34 +280,34 @@ class CalculViewModel : ObservableObject {
 								self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
 							}
 						}
+						//	스택에 ( 가 없으면 잘못된 구문이므로 오류처리한다.
 						else {
 							self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 							break
 						}
 					}
-					//	이건 오류되어야한다
+					//	)와 숫자를 제외한 혹시 다른 값이 들어올 수 있기때문에 오류처리해준다.
 					else{
 						self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 					}
 				}
+				//	마지막에 숫자나 닫는 괄호가 아닌 모든 경우에 수는 오류이다.
+				else {
+					self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
+				}
 
 			}
 		}
-		if calcul.stack.isEmpty == false{
-			self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
-		}
-		//======================================================================================================
-		//	후위식으로 변환
-		//======================================================================================================
-		else {
-			postfixNotationCalcul()
-		}
-		
-		return	calcul.result
 	}
 	
+	// MARK: 연산자에 따른 스택연산함수
+	//--------------------------------------------------------------
+	//	연산자에 따른 스택연산함수
+	//--------------------------------------------------------------
 	func operatorPop(operatorString : String){
-		
+		//--------------------------------------------------------------
+		//	+,- 일 경우에 스택에 있는 모든 연산자가 나와야한다.
+		//--------------------------------------------------------------
 		if operatorString == "+" || operatorString == "-"{
 			
 			if calcul.stack[calcul.stack.count-1] == "+"{
@@ -270,7 +326,9 @@ class CalculViewModel : ObservableObject {
 				
 			}
 		}
-		
+		//--------------------------------------------------------------
+		//	*,/ 일 경우에 스택에 * 와 / 일 때 만 poplast()를 실행한다.
+		//--------------------------------------------------------------
 		else if operatorString == "*" || operatorString == "/"{
 			if calcul.stack[calcul.stack.count-1] == "+"{
 				
@@ -288,40 +346,70 @@ class CalculViewModel : ObservableObject {
 				
 			}
 		}
-		
 	}
+	
+	// MARK: 후위식 계산 함수
+	//--------------------------------------------------------------
+	//	후위식 계산 함수
+	//--------------------------------------------------------------
 	func postfixNotationCalcul() {
+		
 		for i in self.calcul.postfixNotation.indices {
+			
+			//	연산하는 두 값을 저장할 임시 배열
 			var twoIntArray : [Double] = [Double](repeating: 0, count: 2)
+			
+			//	후위식의 크기보다 i 가 커질 경우에는 오류처리한다.
 			if i > calcul.postfixNotation.count - 1 {
 				self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 			}
 			else {
+				
+				//--------------------------------------------------------------
+				//	후위식에 숫자는 일단 스택에 넣어둔다.
+				//	스택에 있는 두 숫자를 임시 배열에 넣어둔다
+				//	i 가 증가하면서 만나는 연산자에 따라 임시배열에 두 숫자를 연산한다.
+				//	연산된 숫자는 다시 스택에 넣어 마지막 하나의 값이 남을때 까지 진행한다.
+				//--------------------------------------------------------------
+				
 				if NumberFormatter().number(from:calcul.postfixNotation[i]) != nil {
 					self.calcul.stack.append(calcul.postfixNotation[i])
 				}
 				else if calcul.postfixNotation[i] == "+"{
+					
 					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
 					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					
 					self.calcul.stack.append(String(twoIntArray[0]+twoIntArray[1]))
+					
 				}
 				else if calcul.postfixNotation[i] == "-"{
+					
 					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
 					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					
 					self.calcul.stack.append(String(twoIntArray[0]-twoIntArray[1]))
+					
 				}
 				else if calcul.postfixNotation[i] == "*"{
+					
 					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
 					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					
 					self.calcul.stack.append(String(twoIntArray[0]*twoIntArray[1]))
+					
 				}
 				else if calcul.postfixNotation[i] == "/"{
+					
 					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
 					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					
 					self.calcul.stack.append(String(twoIntArray[0]/twoIntArray[1]))
+					
 				}
+				// i 가 마지막에 도달 했을 때 결과에 스택에 있는 마지막 숫자를 넣어준다.
 				if i == self.calcul.postfixNotation.count-1 {
-					calcul.result = Double(calcul.stack.popLast() ?? "") ?? 0
+					calcul.result = Double(calcul.stack.popLast() ?? "") ?? Double.nan
 				}
 			}
 		}
