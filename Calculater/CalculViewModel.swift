@@ -99,8 +99,10 @@ class CalculViewModel : ObservableObject {
 						//=================================================================================
 						
 						else{
+							
 							//	들어온 연산기호에 따라 pop되는 경우가 달라진다.
 							switch(calcul.mathExpression[i]){
+								
 							case "+":
 								
 								//	스택에 아무것도 들어 있지 않다면 바로 자신을 넣어준다.
@@ -123,8 +125,6 @@ class CalculViewModel : ObservableObject {
 											calcul.stack.append("+")
 										}
 									}
-									
-									
 									//	스택의 크기가 처음엔
 //									if calcul.stack.count == 0{
 //										calcul.stack.append("+")
@@ -169,8 +169,14 @@ class CalculViewModel : ObservableObject {
 										}
 									}
 								}
+							//===============================<사칙연산 마지막 부분>=================================
+								
+							//=================================================================================
+							//	(,) 연산
+							//=================================================================================
 							case "(":
-								print(calcul.mathExpression.count)
+								
+								//	
 								if i-1 < calcul.mathExpression.count-1 && i-1 > 0 {
 									if NumberFormatter().number(from:calcul.mathExpression[i-1]) != nil {
 										calcul.stack.append("*")
@@ -234,45 +240,11 @@ class CalculViewModel : ObservableObject {
 		if calcul.stack.isEmpty == false{
 			self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 		}
-		
 		//======================================================================================================
 		//	후위식으로 변환
 		//======================================================================================================
 		else {
-			for i in self.calcul.postfixNotation.indices {
-				var twoIntArray : [Double] = [Double](repeating: 0, count: 2)
-				if i > calcul.postfixNotation.count - 1 {
-					self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
-				}
-				else {
-					if NumberFormatter().number(from:calcul.postfixNotation[i]) != nil {
-						self.calcul.stack.append(calcul.postfixNotation[i])
-					}
-					else if calcul.postfixNotation[i] == "+"{
-						twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						self.calcul.stack.append(String(twoIntArray[0]+twoIntArray[1]))
-					}
-					else if calcul.postfixNotation[i] == "-"{
-						twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						self.calcul.stack.append(String(twoIntArray[0]-twoIntArray[1]))
-					}
-					else if calcul.postfixNotation[i] == "*"{
-						twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						self.calcul.stack.append(String(twoIntArray[0]*twoIntArray[1]))
-					}
-					else if calcul.postfixNotation[i] == "/"{
-						twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-						self.calcul.stack.append(String(twoIntArray[0]/twoIntArray[1]))
-					}
-					if i == self.calcul.postfixNotation.count-1 {
-						calcul.result = Double(calcul.stack.popLast() ?? "") ?? 0
-					}
-				}
-			}
+			postfixNotationCalcul()
 		}
 		
 		return	calcul.result
@@ -317,5 +289,41 @@ class CalculViewModel : ObservableObject {
 			}
 		}
 		
+	}
+	func postfixNotationCalcul() {
+		for i in self.calcul.postfixNotation.indices {
+			var twoIntArray : [Double] = [Double](repeating: 0, count: 2)
+			if i > calcul.postfixNotation.count - 1 {
+				self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
+			}
+			else {
+				if NumberFormatter().number(from:calcul.postfixNotation[i]) != nil {
+					self.calcul.stack.append(calcul.postfixNotation[i])
+				}
+				else if calcul.postfixNotation[i] == "+"{
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					self.calcul.stack.append(String(twoIntArray[0]+twoIntArray[1]))
+				}
+				else if calcul.postfixNotation[i] == "-"{
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					self.calcul.stack.append(String(twoIntArray[0]-twoIntArray[1]))
+				}
+				else if calcul.postfixNotation[i] == "*"{
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					self.calcul.stack.append(String(twoIntArray[0]*twoIntArray[1]))
+				}
+				else if calcul.postfixNotation[i] == "/"{
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					self.calcul.stack.append(String(twoIntArray[0]/twoIntArray[1]))
+				}
+				if i == self.calcul.postfixNotation.count-1 {
+					calcul.result = Double(calcul.stack.popLast() ?? "") ?? 0
+				}
+			}
+		}
 	}
 }
