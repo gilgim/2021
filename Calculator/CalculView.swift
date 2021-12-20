@@ -59,7 +59,7 @@ struct CalculView: View {
 							.foregroundColor(.white)
 						
 					}
-					.font(.system(size: calculVM.calcul.result < 1000 ? 90 : 37 , weight: .bold, design: .default))
+					.font(.system(size: calculVM.calcul.result < 1000 ? 80 : 37 , weight: .bold, design: .default))
 				}
 				
 				Spacer()

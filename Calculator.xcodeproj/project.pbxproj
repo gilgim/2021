@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C3445EE4276CE70A0002C5DE /* Calculater.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculater.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3445EE4276CE70A0002C5DE /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3445EE7276CE70A0002C5DE /* CalculaterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculaterApp.swift; sourceTree = "<group>"; };
 		C3445EE9276CE70A0002C5DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C3445EEB276CE70D0002C5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,7 +51,7 @@
 		C3445EE5276CE70A0002C5DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3445EE4276CE70A0002C5DE /* Calculater.app */,
+				C3445EE4276CE70A0002C5DE /* Calculator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -68,7 +68,8 @@
 				C3445EED276CE70D0002C5DE /* Preview Content */,
 				C3FE4439276DD0C200C1042A /* Colors.swift */,
 			);
-			path = Calculater;
+			name = Calculater;
+			path = Calculator;
 			sourceTree = "<group>";
 		};
 		C3445EED276CE70D0002C5DE /* Preview Content */ = {
@@ -82,9 +83,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C3445EE3276CE70A0002C5DE /* Calculater */ = {
+		C3445EE3276CE70A0002C5DE /* Calculator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C3445EF2276CE70D0002C5DE /* Build configuration list for PBXNativeTarget "Calculater" */;
+			buildConfigurationList = C3445EF2276CE70D0002C5DE /* Build configuration list for PBXNativeTarget "Calculator" */;
 			buildPhases = (
 				C3445EE0276CE70A0002C5DE /* Sources */,
 				C3445EE1276CE70A0002C5DE /* Frameworks */,
@@ -94,9 +95,9 @@
 			);
 			dependencies = (
 			);
-			name = Calculater;
+			name = Calculator;
 			productName = Calculater;
-			productReference = C3445EE4276CE70A0002C5DE /* Calculater.app */;
+			productReference = C3445EE4276CE70A0002C5DE /* Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -114,7 +115,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C3445EDF276CE70A0002C5DE /* Build configuration list for PBXProject "Calculater" */;
+			buildConfigurationList = C3445EDF276CE70A0002C5DE /* Build configuration list for PBXProject "Calculator" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -127,7 +128,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C3445EE3276CE70A0002C5DE /* Calculater */,
+				C3445EE3276CE70A0002C5DE /* Calculator */,
 			);
 		};
 /* End PBXProject section */
@@ -284,7 +285,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Calculater/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = 3RPG64SDVF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -314,7 +315,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Calculater/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = 3RPG64SDVF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -340,7 +341,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C3445EDF276CE70A0002C5DE /* Build configuration list for PBXProject "Calculater" */ = {
+		C3445EDF276CE70A0002C5DE /* Build configuration list for PBXProject "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3445EF0276CE70D0002C5DE /* Debug */,
@@ -349,7 +350,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3445EF2276CE70D0002C5DE /* Build configuration list for PBXNativeTarget "Calculater" */ = {
+		C3445EF2276CE70D0002C5DE /* Build configuration list for PBXNativeTarget "Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3445EF3276CE70D0002C5DE /* Debug */,

@@ -14,8 +14,11 @@ import Foundation
 class CalculViewModel : ObservableObject {
 	//--------------------------------------------------------------
 	//	<Model과 View를 연결 시키는 Property Wrapper 변수>
-		@Published var calcul = CalculModel(stack: [], mathExpression: [], postfixNotation: [],result: 0)
+		@Published var calcul = CalculModel(stack: [], mathExpression: [], postfixNotation: [],result: Double.nan)
 	//--------------------------------------------------------------
+	
+	//	두자리 숫자일 때 String에 + 하기 위한 임시스트링
+	var tempString = ""
 	
 	// MARK: 뷰에서 실행시킬 최종함수
 	//--------------------------------------------------------------
@@ -23,14 +26,27 @@ class CalculViewModel : ObservableObject {
 	//--------------------------------------------------------------
 	func CalculFunc()->Double{
 		
+		//	여러번 눌렀을 수 도 있기 떄문에 항상 초기화 해준다
+		calcul.postfixNotation = []
+		tempString = ""
+		calcul.stack = []
+		calcul.result = Double.nan
+		
 		changepostfixNotation()
 		
 		//	스택이 빈 배열이 아니면 오류이다.
 		if calcul.stack.isEmpty == false{
 			self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
+			print(calcul.result)
 		}
 		else {
-			postfixNotationCalcul()
+			// 함수에서 오류가 났을 경우 계산식을 실행하지 않는다.
+			if self.calcul.postfixNotation == Array(arrayLiteral: "오류입니다."){
+				print(calcul.result)
+			}
+			else {
+				postfixNotationCalcul()
+			}
 		}
 		
 		return	calcul.result
@@ -45,9 +61,6 @@ class CalculViewModel : ObservableObject {
 		//	연산을 여러번 시도했을 때 후위식이 비어있지 않으면 겹쳐지기때문에 초기화한다.
 		self.calcul.postfixNotation = []
 		
-		
-		//	두자리 숫자일 때 String에 + 하기 위한 임시스트링
-		var tempString = ""
 		
 		//	입력된 문자열 만큼 루프를 돈다.
 		for i in calcul.mathExpression.indices {
@@ -101,8 +114,9 @@ class CalculViewModel : ObservableObject {
 					else {
 						//=================================================================================
 						//	<오류 모음>
-						//	*와 /는 연속적으로 올 수 없는 연산기호이다.
+						//	연산자는 연속적으로 올 수 없는 연산기호이다.
 						//	따로 오류로 지정해서 판단해주었다.
+						//	오류인 부분이 생각보다 많아서 오류가 아닌 부분을 if로 두었으면 더 좋을 거 같다.
 						if calcul.mathExpression[i] == "*" && calcul.mathExpression[i+1] == "*" {
 							self.calcul.postfixNotation = Array(arrayLiteral: "오류입니다.")
 						}
@@ -137,17 +151,17 @@ class CalculViewModel : ObservableObject {
 									
 									//	스택의 크기만큼 돌아가는 for문
 									for j in 0 ..< tempCount{
-										operatorPop(operatorString: "+")
-										
-										//	마지막까지 for문이 돌았을 경우에 스택에 해당 연산자를 넣어준다.
-										if j == tempCount-1{
-											calcul.stack.append("+")
+										operatorPop(operatorString: "+",i: i)
+										if NumberFormatter().number(from: calcul.mathExpression[i-1]) == nil {
+											
+										}
+										else{
+											//	마지막까지 for문이 돌았을 경우에 스택에 해당 연산자를 넣어준다.
+											if j == tempCount-1 {
+												calcul.stack.append("+")
+											}
 										}
 									}
-									//	스택의 크기가 처음엔
-//									if calcul.stack.count == 0{
-//										calcul.stack.append("+")
-//									}
 								}
 							
 							//	+의 주석과 순서가 같다.
@@ -157,10 +171,17 @@ class CalculViewModel : ObservableObject {
 								}
 								else {
 									let tempCount = calcul.stack.count
+									//	스택의 크기만큼 돌아가는 for문
 									for j in 0 ..< tempCount{
-										operatorPop(operatorString: "-")
-										if j == tempCount-1 {
-											calcul.stack.append("-")
+										operatorPop(operatorString: "-",i: i)
+										if NumberFormatter().number(from: calcul.mathExpression[i-1]) == nil {
+											
+										}
+										else{
+											//	마지막까지 for문이 돌았을 경우에 스택에 해당 연산자를 넣어준다.
+											if j == tempCount-1 {
+												calcul.stack.append("-")
+											}
 										}
 									}
 								}
@@ -173,7 +194,7 @@ class CalculViewModel : ObservableObject {
 								else {
 									let tempCount = calcul.stack.count
 									for j in 0 ..< tempCount{
-										operatorPop(operatorString: "*")
+										operatorPop(operatorString: "*",i: i)
 										if j == tempCount-1 {
 											calcul.stack.append("*")
 										}
@@ -188,7 +209,7 @@ class CalculViewModel : ObservableObject {
 								else {
 									let tempCount = calcul.stack.count
 									for j in 0 ..< tempCount{
-										operatorPop(operatorString: "/")
+										operatorPop(operatorString: "/",i: i)
 										if j == tempCount-1 {
 											calcul.stack.append("/")
 										}
@@ -226,7 +247,7 @@ class CalculViewModel : ObservableObject {
 									
 									//	(가 나올 때 까지 스택의 마지막요소를 poplast()한다.
 									while calcul.stack[calcul.stack.count-1] != "(" {
-										self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
+										self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
 									}
 									
 									//	여는 괄호를 만났다면 그 괄호는 스택에서 그냥 지워준다.
@@ -258,7 +279,7 @@ class CalculViewModel : ObservableObject {
 						tempString += calcul.mathExpression[i]
 						self.calcul.postfixNotation.append(tempString)
 						while calcul.stack.count != 0 {
-							self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
+							self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
 						}
 					}
 					
@@ -271,13 +292,13 @@ class CalculViewModel : ObservableObject {
 					else if calcul.mathExpression[i] == ")" {
 						if calcul.stack.contains("("){
 							while calcul.stack[calcul.stack.count-1] != "(" {
-								self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
+								self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
 							}
 							if calcul.stack[calcul.stack.count-1] == "("{
 								calcul.stack.remove(at: calcul.stack.count-1)
 							}
 							while calcul.stack.count != 0 {
-								self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
+								self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
 							}
 						}
 						//	스택에 ( 가 없으면 잘못된 구문이므로 오류처리한다.
@@ -304,27 +325,50 @@ class CalculViewModel : ObservableObject {
 	//--------------------------------------------------------------
 	//	연산자에 따른 스택연산함수
 	//--------------------------------------------------------------
-	func operatorPop(operatorString : String){
+	func operatorPop(operatorString : String , i : Int){
 		//--------------------------------------------------------------
 		//	+,- 일 경우에 스택에 있는 모든 연산자가 나와야한다.
+		//	- 앞에 연산자가 올 경우 음수 취급을 해야한다.
 		//--------------------------------------------------------------
 		if operatorString == "+" || operatorString == "-"{
+			if i-1 > 0 {
+				if NumberFormatter().number(from: calcul.mathExpression[i-1]) == nil  && tempString.contains(operatorString) == false{
+					tempString += operatorString
+				}
+				else if calcul.stack[calcul.stack.count-1] == "+"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "-"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "*"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "/"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "("{
+					
+				}
+			}
+			else{
+				if calcul.stack[calcul.stack.count-1] == "+"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "-"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "*"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "/"{
+					self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
+				}
+				else if calcul.stack[calcul.stack.count-1] == "("{
+					
+				}
+			}
 			
-			if calcul.stack[calcul.stack.count-1] == "+"{
-				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
-			}
-			else if calcul.stack[calcul.stack.count-1] == "-"{
-				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
-			}
-			else if calcul.stack[calcul.stack.count-1] == "*"{
-				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
-			}
-			else if calcul.stack[calcul.stack.count-1] == "/"{
-				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
-			}
-			else if calcul.stack[calcul.stack.count-1] == "("{
-				
-			}
 		}
 		//--------------------------------------------------------------
 		//	*,/ 일 경우에 스택에 * 와 / 일 때 만 poplast()를 실행한다.
@@ -337,10 +381,10 @@ class CalculViewModel : ObservableObject {
 				
 			}
 			else if calcul.stack[calcul.stack.count-1] == "*"{
-				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
+				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
 			}
 			else if calcul.stack[calcul.stack.count-1] == "/"{
-				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\0")
+				self.calcul.postfixNotation.append(self.calcul.stack.popLast() ?? "\(Double.nan)")
 			}
 			else if calcul.stack[calcul.stack.count-1] == "("{
 				
@@ -377,32 +421,32 @@ class CalculViewModel : ObservableObject {
 				}
 				else if calcul.postfixNotation[i] == "+"{
 					
-					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
 					
 					self.calcul.stack.append(String(twoIntArray[0]+twoIntArray[1]))
 					
 				}
 				else if calcul.postfixNotation[i] == "-"{
 					
-					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
 					
 					self.calcul.stack.append(String(twoIntArray[0]-twoIntArray[1]))
 					
 				}
 				else if calcul.postfixNotation[i] == "*"{
 					
-					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
 					
 					self.calcul.stack.append(String(twoIntArray[0]*twoIntArray[1]))
 					
 				}
 				else if calcul.postfixNotation[i] == "/"{
 					
-					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
-					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? 0
+					twoIntArray[1]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
+					twoIntArray[0]	= Double(self.calcul.stack.popLast() ?? "0") ?? Double.nan
 					
 					self.calcul.stack.append(String(twoIntArray[0]/twoIntArray[1]))
 					
