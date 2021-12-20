@@ -11,6 +11,10 @@
 		C3445EEA276CE70A0002C5DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3445EE9276CE70A0002C5DE /* ContentView.swift */; };
 		C3445EEC276CE70D0002C5DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3445EEB276CE70D0002C5DE /* Assets.xcassets */; };
 		C3445EEF276CE70D0002C5DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3445EEE276CE70D0002C5DE /* Preview Assets.xcassets */; };
+		C3445EF6276CEC680002C5DE /* CalculModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3445EF5276CEC680002C5DE /* CalculModel.swift */; };
+		C3445EF8276CED100002C5DE /* CalculViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3445EF7276CED100002C5DE /* CalculViewModel.swift */; };
+		C3445EFA276CED200002C5DE /* CalculView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3445EF9276CED200002C5DE /* CalculView.swift */; };
+		C3FE443A276DD0C200C1042A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FE4439276DD0C200C1042A /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		C3445EE9276CE70A0002C5DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C3445EEB276CE70D0002C5DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3445EEE276CE70D0002C5DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C3445EF5276CEC680002C5DE /* CalculModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculModel.swift; sourceTree = "<group>"; };
+		C3445EF7276CED100002C5DE /* CalculViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculViewModel.swift; sourceTree = "<group>"; };
+		C3445EF9276CED200002C5DE /* CalculView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculView.swift; sourceTree = "<group>"; };
+		C3FE4439276DD0C200C1042A /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +61,12 @@
 			children = (
 				C3445EE7276CE70A0002C5DE /* CalculaterApp.swift */,
 				C3445EE9276CE70A0002C5DE /* ContentView.swift */,
+				C3445EF5276CEC680002C5DE /* CalculModel.swift */,
+				C3445EF7276CED100002C5DE /* CalculViewModel.swift */,
+				C3445EF9276CED200002C5DE /* CalculView.swift */,
 				C3445EEB276CE70D0002C5DE /* Assets.xcassets */,
 				C3445EED276CE70D0002C5DE /* Preview Content */,
+				C3FE4439276DD0C200C1042A /* Colors.swift */,
 			);
 			path = Calculater;
 			sourceTree = "<group>";
@@ -137,7 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3445EF8276CED100002C5DE /* CalculViewModel.swift in Sources */,
+				C3FE443A276DD0C200C1042A /* Colors.swift in Sources */,
 				C3445EEA276CE70A0002C5DE /* ContentView.swift in Sources */,
+				C3445EF6276CEC680002C5DE /* CalculModel.swift in Sources */,
+				C3445EFA276CED200002C5DE /* CalculView.swift in Sources */,
 				C3445EE8276CE70A0002C5DE /* CalculaterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +293,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,6 +323,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
