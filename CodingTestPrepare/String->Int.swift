@@ -53,6 +53,7 @@ struct StringtoInt {
 
 
 //	정답로직
+//	알고보니 제한이라는게 들어오는 값들이 한정적이라는 뜻이였다! 이제라도 알았으니 됐다. 30일은 병원가고 31일은 일가니까 틈틈이 올려보자
 func answer_solution(_ s:String) -> Int {
 	// 함수의 반환값이 Int 형으로 Non-Optional 타입이므로 함수 끝에 !을 붙입니다.
 	return Int(s)!
