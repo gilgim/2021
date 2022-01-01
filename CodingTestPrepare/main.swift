@@ -2,5 +2,5 @@
 
 import Foundation
 
-StringtoInt()
+//StringtoInt()
 

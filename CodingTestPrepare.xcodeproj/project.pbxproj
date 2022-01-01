@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31834BA2780A34D00D925DE /* Harshad number.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31834B92780A34D00D925DE /* Harshad number.swift */; };
 		C3C54719277AE856000C1916 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C54718277AE856000C1916 /* main.swift */; };
 		C3C54720277AEB2F000C1916 /* String->Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C5471F277AEB2F000C1916 /* String->Int.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C31834B92780A34D00D925DE /* Harshad number.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harshad number.swift"; sourceTree = "<group>"; };
 		C3C54715277AE856000C1916 /* CodingTestPrepare */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CodingTestPrepare; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3C54718277AE856000C1916 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C3C5471F277AEB2F000C1916 /* String->Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String->Int.swift"; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		C3C54717277AE856000C1916 /* CodingTestPrepare */ = {
 			isa = PBXGroup;
 			children = (
+				C31834B92780A34D00D925DE /* Harshad number.swift */,
 				C3C54718277AE856000C1916 /* main.swift */,
 				C3C5471F277AEB2F000C1916 /* String->Int.swift */,
 			);
@@ -125,6 +128,7 @@
 			files = (
 				C3C54719277AE856000C1916 /* main.swift in Sources */,
 				C3C54720277AEB2F000C1916 /* String->Int.swift in Sources */,
+				C31834BA2780A34D00D925DE /* Harshad number.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
