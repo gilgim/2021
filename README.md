@@ -29,7 +29,7 @@ struct ContentView: View {
 　　　　　　　　　　　　　　<Custom 아이폰8><br>
 
 <br>
-UI 테스트는 알람과 환율이 즉각적으로 바뀌는지 환율이 바뀔 때 마다 송금액이 바뀌는지를 테스트합니다.
+UI 테스트는 오류알람에 대한 테스트와 환율이 즉각적으로 바뀌는지, 환율이 바뀔 때 마다 송금액이 바뀌는지를 테스트합니다.
 <pre>
 <code>
 func testExample() throws {
