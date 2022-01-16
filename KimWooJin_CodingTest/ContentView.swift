@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+		
 		//	예제 뷰
 		Basic_ERCView()
 		

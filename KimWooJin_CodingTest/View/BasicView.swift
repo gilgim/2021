@@ -47,6 +47,10 @@ struct Basic_ERCView: View {
 							.onTapGesture {
 								withAnimation {
 									ercViewModel.showBool = true
+									
+									//	수취국가 변경마다 API에 서버요청
+									ercViewModel.ercJson.loadJson("9e5a3941f322dd08761175aa0482d222")
+									
 								}
 								//	키보드 숨기는 함수 실행
 								UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -114,6 +118,9 @@ struct Basic_ERCView: View {
 				withAnimation {
 					ercViewModel.showBool = false
 				}
+			}
+			.alert(isPresented: $ercViewModel.ercAlert){
+				Alert(title: Text("오류"), message: Text("송금액이 바르지 않습니다."), dismissButton: .default(Text("완료")))
 			}
 	}
 }

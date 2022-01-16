@@ -23,13 +23,11 @@ class KimWooJin_CodingTestUITests: XCTestCase {
     }
 
     func testExample() throws {
-        // UI tests must launch the application that they test.
 		let app = XCUIApplication()
+						
 		basicViewFuc(app: app)
 		//customViewFuc(app: app)
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
     func testLaunchPerformance() throws {
@@ -71,6 +69,13 @@ class KimWooJin_CodingTestUITests: XCTestCase {
 		krwPickerWheel.swipeUp()
 		XCUIApplication()/*@START_MENU_TOKEN@*/.buttons["KeyboardPicker"]/*[[".buttons[\"Done\"]",".buttons[\"KeyboardPicker\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
 		
+		app.textFields["금액"].tap()
+		
+		let key5 = app/*@START_MENU_TOKEN@*/.keys["5"]/*[[".keyboards.keys[\"5\"]",".keys[\"5\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+		key5.tap()
+		
+		app.alerts["오류"].scrollViews.otherElements.buttons["완료"].tap()
+		
 		sleep(3)
 	}
 	
@@ -97,6 +102,15 @@ class KimWooJin_CodingTestUITests: XCTestCase {
 		
 		app.buttons["한국(KRW)"].tap()
 		app.collectionViews/*@START_MENU_TOKEN@*/.buttons["필리핀(PHP)"]/*[[".cells.buttons[\"필리핀(PHP)\"]",".buttons[\"필리핀(PHP)\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		
+		sleep(2)
+		
+		app.textFields["금액"].tap()
+		let key5 = app/*@START_MENU_TOKEN@*/.keys["5"]/*[[".keyboards.keys[\"5\"]",".keys[\"5\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+		key5.tap()
+		
+		app.alerts["오류"].scrollViews.otherElements.buttons["완료"].tap()
+		app.toolbars["Toolbar"].buttons["Done"].tap()
 		
 		sleep(2)
 	}

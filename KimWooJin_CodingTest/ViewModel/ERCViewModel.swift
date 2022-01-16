@@ -46,6 +46,8 @@ class ERCViewModel : ObservableObject {
 	//	환율과 입력값을 계산하여 넣어주는 변수
 	@Published var ercCostSum : Double = 0
 		
+	//	일정 범위를 벗어나면 울리는 팝업 뷰의 변수
+	@Published var ercAlert : Bool = false
 	
 	//	텍스트 필드에 들어오는 바인딩 값
 	var ercCostBinding : Binding<String>{
@@ -64,6 +66,15 @@ class ERCViewModel : ObservableObject {
 				if let value = NumberFormatter().number(from:$0){
 					self.ercCostDouble = value.doubleValue
 					self.Calc()
+					
+					if value.doubleValue < 0 || value.doubleValue > 10000 {
+						self.ercAlert = true
+						self.ercCostDouble = 0
+						self.ercCostSum = 0
+					}
+				}
+				else{
+					self.ercAlert = true
 				}
 			}
 		)

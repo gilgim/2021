@@ -166,6 +166,9 @@ struct Custom_ERCView: View {
 			.navigationTitle(Text("환율계산"))
 			.frame(maxWidth : userDeviceWidth, alignment: .leading)
 		}
+		.alert(isPresented: $ercViewModel.ercAlert){
+			Alert(title: Text("오류"), message: Text("송금액이 바르지 않습니다."), dismissButton: .default(Text("완료")))
+		}
 	}
 }
 
