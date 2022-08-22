@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C31834E82783412E00D925DE /* FLOProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31834E72783412E00D925DE /* FLOProjectApp.swift */; };
+		C31834EA2783412E00D925DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31834E92783412E00D925DE /* ContentView.swift */; };
+		C31834EC2783413000D925DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31834EB2783413000D925DE /* Assets.xcassets */; };
+		C31834EF2783413000D925DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C31834EE2783413000D925DE /* Preview Assets.xcassets */; };
+		C31834F9278341E000D925DE /* song.json in Resources */ = {isa = PBXBuildFile; fileRef = C31834F7278341E000D925DE /* song.json */; };
+		C31834FF2783479A00D925DE /* FLO_Splash-Img3x(1242x2688).png in Resources */ = {isa = PBXBuildFile; fileRef = C31834FE2783479A00D925DE /* FLO_Splash-Img3x(1242x2688).png */; };
+		C3183501278347B700D925DE /* FLOView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3183500278347B700D925DE /* FLOView.swift */; };
+		C318350327834C2E00D925DE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C318350227834C2E00D925DE /* Launch Screen.storyboard */; };
+		C31835082783578A00D925DE /* FLOViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31835072783578A00D925DE /* FLOViewModel.swift */; };
+		C318350A278360C800D925DE /* JSONParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3183509278360C800D925DE /* JSONParsing.swift */; };
+		C318350C2783E8DA00D925DE /* Albumimage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318350B2783E8DA00D925DE /* Albumimage.swift */; };
+		C318350E2783E99300D925DE /* AlbumimageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318350D2783E99300D925DE /* AlbumimageViewModel.swift */; };
+		C31835102785E72C00D925DE /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318350F2785E72C00D925DE /* Sound.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C31834E42783412E00D925DE /* FLOProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FLOProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C31834E72783412E00D925DE /* FLOProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLOProjectApp.swift; sourceTree = "<group>"; };
+		C31834E92783412E00D925DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C31834EB2783413000D925DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C31834EE2783413000D925DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C31834F5278341C400D925DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C31834F7278341E000D925DE /* song.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song.json; sourceTree = "<group>"; };
+		C31834FE2783479A00D925DE /* FLO_Splash-Img3x(1242x2688).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FLO_Splash-Img3x(1242x2688).png"; sourceTree = "<group>"; };
+		C3183500278347B700D925DE /* FLOView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLOView.swift; sourceTree = "<group>"; };
+		C318350227834C2E00D925DE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		C31835072783578A00D925DE /* FLOViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLOViewModel.swift; sourceTree = "<group>"; };
+		C3183509278360C800D925DE /* JSONParsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsing.swift; sourceTree = "<group>"; };
+		C318350B2783E8DA00D925DE /* Albumimage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Albumimage.swift; sourceTree = "<group>"; };
+		C318350D2783E99300D925DE /* AlbumimageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumimageViewModel.swift; sourceTree = "<group>"; };
+		C318350F2785E72C00D925DE /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C31834E12783412E00D925DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C31834DB2783412E00D925DE = {
+			isa = PBXGroup;
+			children = (
+				C31834E62783412E00D925DE /* FLOProject */,
+				C31834E52783412E00D925DE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C31834E52783412E00D925DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C31834E42783412E00D925DE /* FLOProject.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C31834E62783412E00D925DE /* FLOProject */ = {
+			isa = PBXGroup;
+			children = (
+				C31834F5278341C400D925DE /* Info.plist */,
+				C318350427834D7900D925DE /* Data */,
+				C31834E72783412E00D925DE /* FLOProjectApp.swift */,
+				C31834E92783412E00D925DE /* ContentView.swift */,
+				C318350527834D8E00D925DE /* View */,
+				C318350627834DA100D925DE /* ViewModel */,
+				C318350227834C2E00D925DE /* Launch Screen.storyboard */,
+				C31834EB2783413000D925DE /* Assets.xcassets */,
+				C31834ED2783413000D925DE /* Preview Content */,
+			);
+			path = FLOProject;
+			sourceTree = "<group>";
+		};
+		C31834ED2783413000D925DE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C31834EE2783413000D925DE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C318350427834D7900D925DE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C31834FE2783479A00D925DE /* FLO_Splash-Img3x(1242x2688).png */,
+				C31834F7278341E000D925DE /* song.json */,
+				C3183509278360C800D925DE /* JSONParsing.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C318350527834D8E00D925DE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3183500278347B700D925DE /* FLOView.swift */,
+				C318350B2783E8DA00D925DE /* Albumimage.swift */,
+				C318350F2785E72C00D925DE /* Sound.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C318350627834DA100D925DE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C31835072783578A00D925DE /* FLOViewModel.swift */,
+				C318350D2783E99300D925DE /* AlbumimageViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C31834E32783412E00D925DE /* FLOProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C31834F22783413000D925DE /* Build configuration list for PBXNativeTarget "FLOProject" */;
+			buildPhases = (
+				C31834E02783412E00D925DE /* Sources */,
+				C31834E12783412E00D925DE /* Frameworks */,
+				C31834E22783412E00D925DE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FLOProject;
+			productName = FLOProject;
+			productReference = C31834E42783412E00D925DE /* FLOProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C31834DC2783412E00D925DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					C31834E32783412E00D925DE = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = C31834DF2783412E00D925DE /* Build configuration list for PBXProject "FLOProject" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C31834DB2783412E00D925DE;
+			productRefGroup = C31834E52783412E00D925DE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C31834E32783412E00D925DE /* FLOProject */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C31834E22783412E00D925DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C31834FF2783479A00D925DE /* FLO_Splash-Img3x(1242x2688).png in Resources */,
+				C31834F9278341E000D925DE /* song.json in Resources */,
+				C31834EF2783413000D925DE /* Preview Assets.xcassets in Resources */,
+				C318350327834C2E00D925DE /* Launch Screen.storyboard in Resources */,
+				C31834EC2783413000D925DE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C31834E02783412E00D925DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C318350E2783E99300D925DE /* AlbumimageViewModel.swift in Sources */,
+				C31834EA2783412E00D925DE /* ContentView.swift in Sources */,
+				C318350C2783E8DA00D925DE /* Albumimage.swift in Sources */,
+				C318350A278360C800D925DE /* JSONParsing.swift in Sources */,
+				C3183501278347B700D925DE /* FLOView.swift in Sources */,
+				C31835082783578A00D925DE /* FLOViewModel.swift in Sources */,
+				C31834E82783412E00D925DE /* FLOProjectApp.swift in Sources */,
+				C31835102785E72C00D925DE /* Sound.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C31834F02783413000D925DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C31834F12783413000D925DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C31834F32783413000D925DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FLOProject/Preview Content\"";
+				DEVELOPMENT_TEAM = 3RPG64SDVF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FLOProject/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FLOProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C31834F42783413000D925DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FLOProject/Preview Content\"";
+				DEVELOPMENT_TEAM = 3RPG64SDVF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FLOProject/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FLOProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C31834DF2783412E00D925DE /* Build configuration list for PBXProject "FLOProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31834F02783413000D925DE /* Debug */,
+				C31834F12783413000D925DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C31834F22783413000D925DE /* Build configuration list for PBXNativeTarget "FLOProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C31834F32783413000D925DE /* Debug */,
+				C31834F42783413000D925DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C31834DC2783412E00D925DE /* Project object */;
+}
